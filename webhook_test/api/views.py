@@ -20,8 +20,8 @@ class Authorize(APIView):
             mccCode = request_body["cardAuthorization"]["mccCode"]
             billingAmount = request_body["cardAuthorization"]["billingAmount"]
             holderAmount = request_body["cardAuthorization"]["holderAmount"]
-            print(transactionAmount)
-            if transactionAmount >= 1000 or (mccCode in ["1520","5814"]) :
+            print(billingAmount)
+            if billingAmount > 2000 or (mccCode in ["1520","5814"]) :
 
                 return Response({
                     "status": "success",

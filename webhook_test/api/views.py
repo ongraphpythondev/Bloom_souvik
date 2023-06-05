@@ -8,7 +8,7 @@ class Authorize(APIView):
         # Get the request body
         try:
             request_body = request.data
-            # print(request_body)
+            print(request_body)
             cardID = request_body["cardAuthorization"]["cardId"]
             accountID = request_body["cardAuthorization"]["accountId"]
             availableBalance = request_body["cardAuthorization"]["availableBalance"]

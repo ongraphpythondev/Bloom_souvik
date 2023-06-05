@@ -8,7 +8,7 @@ class Authorize(APIView):
         # Get the request body
         try:
             request_body = request.data
-            print(request_body)
+            print(type(request_body))
             cardID = request_body["cardAuthorization"]["cardId"]
             accountID = request_body["cardAuthorization"]["accountId"]
             availableBalance = request_body["cardAuthorization"]["availableBalance"]
@@ -28,7 +28,7 @@ class Authorize(APIView):
                 return Response({
                     "status": "success",
                     "data": {
-                        "responseCode": 61,
+                        "responseCode": "61",
                         "billingAmount": billingAmount,
                         "holderAmount": holderAmount,
                         "availableBalance": availableBalance,
@@ -42,7 +42,7 @@ class Authorize(APIView):
             return Response({
                 "status": "success",
                 "data": {
-                    "responseCode": responseCode,
+                    "responseCode": "00",
                     "billingAmount": billingAmount,
                     "holderAmount": holderAmount,
                     "availableBalance": availableBalance,

@@ -23,13 +23,13 @@ class Authorize(APIView):
             print("Billing Amount",abs(billingAmount))
             print("mccCode: ",mccCode)
 
-            if abs(billingAmount) > 20000 or (mccCode in ["1520","5814"]) :
-                print("DECLINE")
+            if abs(billingAmount) < 2000 and (mccCode in ["1520","5814"]) :
+                print("Approve")
 
                 return Response({
                     "status": "success",
                     "data": {
-                        "responseCode": "61",
+                        "responseCode": "00",
                         "billingAmount": billingAmount,
                         "holderAmount": holderAmount,
                         "availableBalance": availableBalance,
@@ -37,13 +37,31 @@ class Authorize(APIView):
                     }
                 }, status=200)
 
+
+
+
+
+            # if abs(billingAmount) > 20000 or (mccCode in ["1520","5814"]) :
+            #     print("DECLINE")
+
+            #     return Response({
+            #         "status": "success",
+            #         "data": {
+            #             "responseCode": "61",
+            #             "billingAmount": billingAmount,
+            #             "holderAmount": holderAmount,
+            #             "availableBalance": availableBalance,
+            #             "settledBalance": settledBalance
+            #         }
+            #     }, status=200)
+
             # Process the request body as needed
             # ...
-            print("Confirm")
+            print("Decline")
             return Response({
                 "status": "success",
                 "data": {
-                    "responseCode": "00",
+                    "responseCode": "61",
                     "billingAmount": billingAmount,
                     "holderAmount": holderAmount,
                     "availableBalance": availableBalance,

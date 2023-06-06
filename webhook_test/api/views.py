@@ -8,7 +8,7 @@ class Authorize(APIView):
         # Get the request body
         try:
             request_body = request.data
-            print(type(request_body))
+            # print(type(request_body))
             cardID = request_body["cardAuthorization"]["cardId"]
             accountID = request_body["cardAuthorization"]["accountId"]
             availableBalance = request_body["cardAuthorization"]["availableBalance"]
@@ -20,10 +20,11 @@ class Authorize(APIView):
             mccCode = request_body["cardAuthorization"]["mccCode"]
             billingAmount = request_body["cardAuthorization"]["billingAmount"]
             holderAmount = request_body["cardAuthorization"]["holderAmount"]
-            print(abs(billingAmount),mccCode)
-            print(billingAmount,type(mccCode))
+            print("Billing Amount",abs(billingAmount))
+            print("mccCode: ",mccCode)
 
-            if abs(billingAmount) > 200 or (mccCode in ["1520","5814"]) :
+            if abs(billingAmount) > 20000 or (mccCode in ["1520","5814"]) :
+                print("DECLINE")
 
                 return Response({
                     "status": "success",
@@ -38,7 +39,7 @@ class Authorize(APIView):
 
             # Process the request body as needed
             # ...
-
+            print("Confirm")
             return Response({
                 "status": "success",
                 "data": {
